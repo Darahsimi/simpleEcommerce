@@ -1,0 +1,15 @@
+.button4{
+   color: black;
+   background-color: white;
+   height: 40px;
+   width: 140px;
+   border: 2px soild #2015FF;
+   border-radius: 4px;
+   margin-left: 30px;
+   border-color: #2015FF;
+   margin-top:10px;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 700;
+   font-size: 16px;
+   line-height: 20px; 
+}

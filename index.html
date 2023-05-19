@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>E-commerce</title>
+   <link rel="stylesheet" href="index.css">
+   <link rel="stylesheet" href="./font/font/fontawesome-free-6.2.0-web/fontawesome-free-6.2.0-web/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+   crossorigin="anonymous">
+</head>
+<body onload="displayCart()" >
+   <nav class="navbar navbar-expand-lg bg-body-tertiary  fixed-top">
+         <div class="container-fluid">
+           <a class="navbar-brand" href="#">
+            <img style="margin-left: 10%;" class="w-25" src="./Images/rrr.png" alt="">
+            <!-- <p style=" color: #2015FF;margin-left: 10%;" class="note">Dara's Mall</p> -->
+           </a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+           </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                </div>
+
+               <div>
+               <a style="margin-left: 100px;"  class="sign" href="getstarted.html"> <button class="button4">Get Started</button> </a>
+               </div>
+        </div>
+           </div>
+         </div>
+       </nav>
+
+
+
+      <section onload="displayCart()" style="background-color: #2015FF; margin-top: 30%;"  class="w-75 p-5 shadow mx-auto  mt-5 rounded"  >
+            <h1><marquee >Welcome to Dara's Mall</marquee></h1>   
+         <input type="text" placeholder="Add an item" class="form-control my-4" id="item">
+         <input type="number" placeholder="Price" class="form-control my-4" id="price">
+         <input type="number" placeholder="Quantity" class="form-control my-4" id="quantity">
+         <input type="text" placeholder="Add To Cart" id="add">
+         <button onclick="addCart()">Add To Cart</button>
+      </section>
+     
+         
+
+
+       <table class="table table-striped w-100" >
+         <thead>
+            <tr>
+               <th class="border w-25">S/N</th>
+               <th class="border w-50">ITEM</th>
+               <th class="border w-25">PRICE</th>
+               <th class="border w-25">QUANTITY</th>
+               <th class="border w-25">ACTIONS</th>
+            </tr>
+         </thead>
+         
+         <tbody id="myTable">
+         
+         </tbody>
+            </table>
+   <script>
+      let table =document.getElementById(myTable.value)
+      let allCarts=[]
+      
+      const addCart = ()=>{
+         let cartUsers={
+            Item: item.value,
+            Price:price.value,
+            Quantity:quantity.value
+         }
+         allCarts.push(cartUsers)
+        console.log(allCarts);
+         item.value=""
+         price.value=""
+         quantity.value=""
+         displayCart()
+         localStorage.setItem("data", JSON.stringify(allCarts))
+      }
+
+      const displayCart = ()=>{
+         // allCarts=JSON.parse(localStorage.getItem("data"))
+         myTable.innerHTML=""
+
+         for (let index = 0; index < allCarts.length; index++) {
+            // myTable.innerHTML+=""
+            console.log(allCarts[index].Price);
+            myTable.innerHTML = ` 
+            <tr>
+            <td class="border">${index +1}</td>
+             <td class="border">${allCarts[index].Item}</td>
+             <td class="border">$ ${allCarts[index].Price}</td>
+             <td class="border">${allCarts[index].Quantity}</td>
+             <td class="border mx-auto">
+            
+               <i style=font-size="540px" class="fa-solid fa-trash-can bg-danger p-2 rounded text-light "
+                onclick="deleteItem(${index})"></i>
+           
+            <i  class="fa-solid fa-pencil bg-warning p-2 rounded text-light"
+             onclick="editItem(${index})"</i>
+            </td>
+            </tr>
+
+            `
+            
+         }
+      }
+
+      const deleteItem = ()=>{
+         let response= confirm("Are you sure you want to delete this")
+         if(response==true){
+            allCarts.splice(index,1)
+            displayCart()
+            console.log(allCarts);
+         }else{
+            console.log("ok");
+         }
+      }
+
+
+   </script>
+</body>
+</html>
