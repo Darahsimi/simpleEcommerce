@@ -111,17 +111,21 @@
          }
       }
 
-      const deleteItem = ()=>{
+      const deleteItem = (userIndex)=>{
          let response= confirm("Are you sure you want to delete this")
          if(response==true){
-            allCarts.splice(index,1)
+            allCarts.splice(userIndex,1)
+            localStorage.setItem ("data", JSON.stringify(allCarts))
+
             displayCart()
             console.log(allCarts);
          }else{
             console.log("ok");
          }
       }
-
+      const editItem = (userIndex)=>{
+         
+      }
 
    </script>
 </body>
